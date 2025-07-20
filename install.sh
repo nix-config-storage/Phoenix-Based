@@ -9,8 +9,7 @@ if [ $# -gt 0 ]
   else
     SCRIPT_DIR=~/.dotfiles
 fi
-nix-shell -p git --command "git clone https://gitlab.com/librephoenix/nixos-config $SCRIPT_DIR"
-
+nix-shell -p git --command "git clone https://github.com/nix-config-storage/Phoenix-Based $SCRIPT_DIR"
 # Generate hardware config for new system
 sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
 
@@ -31,7 +30,7 @@ sed -i "s+~/.dotfiles+$SCRIPT_DIR+g" $SCRIPT_DIR/flake.nix
 
 # Open up editor to manually edit flake.nix before install
 if [ -z "$EDITOR" ]; then
-    EDITOR=nano;
+    EDITOR=vim;
 fi
 $EDITOR $SCRIPT_DIR/flake.nix;
 
