@@ -1,14 +1,19 @@
 #+title: NixOS Config
-#+author: Emmet
-
-[[https://gitlab.com/librephoenix/nixos-config][Main Repo Link (GitLab)]]
-
-[[https://github.com/librephoenix/nixos-config][Mirror Repo Link (GitHub)]]
-
-[[https://codeberg.org/librephoenix/nixos-config][Mirror Repo Link (Codeberg)]]
+#+author: Casey
 
 ** What is this repository?
 These are my dotfiles (configuration files) for my NixOS setup(s).
+
+** Credit 
+
+The original structure of the folders, and the hyperland config/much of the system was "inspired" aka
+Originally designed by -
+
+** librephoenix (Emmet)
+
+Heres a link to their *gitlab*, and they also have a youtube channel, that I highly reccomend if you're just getting into nix.
+
+[[https://gitlab.com/librephoenix/nixos-config][Main Repo Link (GitLab)]]
 
 Here is my main setup:
 [[desktop.png]]
@@ -22,8 +27,9 @@ Using this I have [[./themes][55+ themes]] (I add more sometimes) I can switch b
 I wrote some reinstall notes for myself [[./install.org][here (install.org)]].
 
 TLDR: You should™ be able to install my dotfiles to a fresh NixOS system with the following experimental script:
+
 #+begin_src sh :noeval
-nix-shell -p git --command "nix run --experimental-features 'nix-command flakes' gitlab:librephoenix/nixos-config"
+nix-shell -p git --command "nix run --experimental-features 'nix-command flakes' github:nix-config-storage/Phoenix-Based"
 #+end_src
 
 Disclaimer: Ultimately, I can't gaurantee this will work for anyone other than myself, so /use this at your own discretion/. Also my dotfiles are /highly/ opinionated, which you will discover immediately if you try them out.
