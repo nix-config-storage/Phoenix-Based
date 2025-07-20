@@ -8,7 +8,6 @@ in
     (import ../../app/dmenu-scripts/networkmanager-dmenu.nix {
       dmenu_command = "fuzzel -d"; inherit config lib pkgs;
     })
-    ../input/nihongo.nix
   ] ++
   (if (systemSettings.profile == "personal") then
     [ (import ./hyprprofiles/hyprprofiles.nix {
