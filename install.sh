@@ -22,12 +22,6 @@ else
     sed -i "0,/grubDevice.*=.*\".*\";/s//grubDevice = \"\/dev\/$grubDevice\";/" $SCRIPT_DIR/flake.nix
 fi
 
-# Patch flake.nix with different username/name and remove email by default
-sed -i "0,/emmet/s//$(whoami)/" $SCRIPT_DIR/flake.nix
-sed -i "0,/Emmet/s//$(getent passwd $(whoami) | cut -d ':' -f 5 | cut -d ',' -f 1)/" $SCRIPT_DIR/flake.nix
-sed -i "s/emmet@librephoenix.com//" $SCRIPT_DIR/flake.nix
-sed -i "s+~/.dotfiles+$SCRIPT_DIR+g" $SCRIPT_DIR/flake.nix
-
 # Open up editor to manually edit flake.nix before install
 if [ -z "$EDITOR" ]; then
     EDITOR=vim;
