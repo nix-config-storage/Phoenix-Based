@@ -18,9 +18,9 @@
 
       # ----- USER SETTINGS ----- #
       userSettings = rec {
-        username = "emmet"; # username
-        name = "Emmet"; # name/identifier
-        email = "emmet@librephoenix.com"; # email (used for certain configurations)
+        username = "casey"; # username
+        name = "Casey"; # name/identifier
+        email = "caseyriley94@gmail.com"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
         theme = "io"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
@@ -56,9 +56,8 @@
         (import inputs.nixpkgs { system = systemSettings.system; rocmSupport = (if systemSettings.gpu == "amd" then true else false); }).applyPatches {
           name = "nixpkgs-patched";
           src = inputs.nixpkgs;
-          patches = [ #./patches/emacs-no-version-check.patch
-                      #./patches/nixpkgs-348697.patch
-                    ];
+          patches = [ 
+               ];
         };
 
       # configure pkgs
