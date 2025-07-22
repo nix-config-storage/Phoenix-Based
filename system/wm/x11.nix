@@ -25,7 +25,7 @@
     '';
     };
     libinput = {
-      touchpad.disableWhileTyping = true;
+      touchpad.disableWhileTyping = false;
     };
   };
 }
