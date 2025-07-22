@@ -12,10 +12,10 @@ assert lib.asserts.assertOneOf "storageDriver" storageDriver [
 
 {
   virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
+    enable = false;
+    enableOnBoot = false;
     storageDriver = storageDriver;
-    autoPrune.enable = true;
+    autoPrune.enable = false;
   };
   users.users.${userSettings.username}.extraGroups = [ "docker" ];
   environment.systemPackages = with pkgs; [
