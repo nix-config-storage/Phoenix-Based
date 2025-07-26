@@ -10,13 +10,12 @@
 
   services.fstrim.enable = true;
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "radeon" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "radeon" ];
-  boot.kernelModules = [ "kvm-amd" "radeon" "zenpower" "8812au" ];
+  boot.kernelModules = [ "radeon" "zenpower" "8812au" ];
   boot.blacklistedKernelModules = [ "k10temp" ];
-  boot.kernelParams = [ "amd_pstate=active" ];
+  boot.kernelParams = [ ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower rtl8812au ];
-  hardware.opengl.extraPackages = [ pkgs.rocmPackages.clr.icd ];
   hardware.opengl.extraPackages32 = [ ];
 
   environment.systemPackages = with pkgs.rocmPackages; [ hipcc hip-common hiprand hipblas hipfft hipcub hipify ];
@@ -32,20 +31,6 @@
   hardware.amdgpu.initrd.enable = true;
   hardware.amdgpu.opencl.enable = true;
   hardware.amdgpu.amdvlk.enable = true;
-
-  systemd.tmpfiles.rules = 
-    let
-      rocmEnv = pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          rocblas
-          hipblas
-          clr
-        ];
-      };
-    in [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-    ];
 
   # my stupid usb hub crashes systemct suspend half of the time now
   # https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Sleep_hooks
@@ -88,18 +73,29 @@
     interval = "weekly";
   };
 
+
+#fileSystems."/persist" =
+#      { device = "/persist";
+#        fsType = "btrfs";
+#        neededForBoot = true;
+#      }
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/637d8261-0650-4ece-a35b-59d97baf64a7";
       fsType = "btrfs";
       options = [ "noatime,compress-force=zstd:2,discard=async,commit=120,clear_cache,space_cache=v2,subvol=@" ];
     };
 
-  boot.initrd.luks.devices."luks-385106b5-71f7-460e-9a2b-2416f3b54cb6".device = "/dev/disk/by-uuid/385106b5-71f7-460e-9a2b-2416f3b54cb6";
+  
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/F09D-73C9";
       fsType = "vfat";
     };
+
+
+boot.initrd.luks.devices."luks-385106b5-71f7-460e-9a2b-2416f3b54cb6".device = "/dev/disk/by-uuid/385106b5-71f7-460e-9a2b-2416f3b54cb6";
+
 
   swapDevices = [ ];
 
