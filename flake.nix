@@ -6,14 +6,14 @@
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         system = "x86_64-linux"; # system arch
-        hostname = "snowfire"; # hostname
+        hostname = "Hailstorm"; # hostname
         profile = "personal"; # select a profile defined from my profiles directory
-        timezone = "America/Chicago"; # select timezone
+        timezone = "America/New_York"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         bootMode = "uefi"; # uefi or bios
         bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
         grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
-        gpuType = "amd"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
+        gpuType = "intel"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
       };
 
       # ----- USER SETTINGS ----- #
