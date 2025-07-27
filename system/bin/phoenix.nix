@@ -1,5 +1,9 @@
 { pkgs, userSettings, ... }:
 # TODO make this work on nix-on-droid!
+
+# TODO (new); convert this to a case statement?
+# TODO then use lib.readFile or equiv to pull in scripts
+
 let myScript = ''
       if [ "$1" = "sync" ]; then
         if [ "$#" = 1 ]; then
