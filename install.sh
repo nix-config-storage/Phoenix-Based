@@ -11,6 +11,8 @@ if [ $# -gt 0 ]
 fi
 nix-shell -p git --command "git clone https://github.com/nix-config-storage/Phoenix-Based $SCRIPT_DIR"
 # Generate hardware config for new system
+# !TODO merge the autogernated one with your customized variant befote install
+
 sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
 
 # Check if uefi or bios
