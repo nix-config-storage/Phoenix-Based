@@ -1,8 +1,5 @@
 { pkgs, userSettings, ... }:
-# TODO make this work on nix-on-droid!
-
-# TODO (new); convert this to a case statement?
-# TODO then use lib.readFile or equiv to pull in scripts
+# TODO convert this to the mission-control flake-parts module
 
 let myScript = ''
       if [ "$1" = "sync" ]; then
